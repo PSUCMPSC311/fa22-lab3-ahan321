@@ -210,7 +210,7 @@ int mdadm_write(uint32_t start_addr, uint32_t write_len, const uint8_t *write_bu
 		return -1;
 	}
 
-	if (write_len == NULL && write_len != 0) {
+	if (write_buf == NULL && write_len != 0) {
 		return -1;
 	}
 
@@ -231,7 +231,7 @@ int mdadm_write(uint32_t start_addr, uint32_t write_len, const uint8_t *write_bu
 	read buffer.  The write variable tracks the number of bytes write until now. */
 	int c_block = start_block;
 	int c_disk = start_disk;
-	uint8_t* c_pointer = write_buf;
+	uint8_t* c_pointer = (uint8_t*) write_buf;
 	int write = 0;
 
 	while (write < write_len) {
